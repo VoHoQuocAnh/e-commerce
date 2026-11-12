@@ -1,0 +1,27 @@
+// server/src/constants/orderStatus.js
+const ORDER_STATUS = Object.freeze({
+  PENDING_PAYMENT: 'pending_payment',
+  PENDING_CONFIRMATION: 'pending_confirmation',
+  SHIPPING: 'shipping',
+  COMPLETED: 'completed',
+  CANCELLED: 'cancelled',
+});
+
+const VALID_ORDER_TRANSITIONS = Object.freeze({
+  [ORDER_STATUS.PENDING_PAYMENT]: [
+    ORDER_STATUS.PENDING_CONFIRMATION,
+    ORDER_STATUS.CANCELLED,
+  ],
+  [ORDER_STATUS.PENDING_CONFIRMATION]: [
+    ORDER_STATUS.SHIPPING,
+    ORDER_STATUS.CANCELLED,
+  ],
+  [ORDER_STATUS.SHIPPING]: [ORDER_STATUS.COMPLETED, ORDER_STATUS.CANCELLED],
+  [ORDER_STATUS.COMPLETED]: [],
+  [ORDER_STATUS.CANCELLED]: [],
+});
+
+module.exports = {
+  ORDER_STATUS,
+  VALID_ORDER_TRANSITIONS,
+};

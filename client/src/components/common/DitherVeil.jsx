@@ -779,7 +779,9 @@ const DitherVeil = ({
           viewUniforms.uMatte.value = edge.matte;
           viewUniforms.uKey.value = edge.plain ? 1 : 0;
         }
-      } catch {}
+      } catch {
+        // Ignore cross-origin or canvas sampling errors
+      }
       introStart = performance.now();
       wake();
     };

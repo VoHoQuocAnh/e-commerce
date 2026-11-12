@@ -19,7 +19,7 @@ router.get('/health', (req, res) => {
   res.json({
     success: true,
     message: 'CALEM STUDIO API is running',
-    data: { timestamp: new Date().toISOString() },
+    data: { status: 'OK', timestamp: new Date().toISOString() },
   });
 });
 
